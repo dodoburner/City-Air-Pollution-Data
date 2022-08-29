@@ -66,9 +66,11 @@ export default function Tile({ name, index, id, type }) {
           </button>
         </Link>
       ) : (
-        <button className="option-btn">
-          <FontAwesomeIcon icon={faArrowRight} />
-        </button>
+        <Link to="/country" state={{ id, name }}>
+          <button className="option-btn">
+            <FontAwesomeIcon icon={faArrowRight} />
+          </button>
+        </Link>
       )}
 
       <div className="img-container">

@@ -4,7 +4,6 @@ import "../styles/Home.css";
 
 export default function Home() {
   const continents = useSelector((state) => state.continents);
-  useSelector((state) => console.log(state));
 
   return (
     <div className="home-container">
