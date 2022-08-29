@@ -1,10 +1,13 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
-import '../styles/Option.css';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import "../styles/Option.css";
 
-export default function Option({ name }) {
+export default function Option({ name, index }) {
   return (
-    <div className="option-container">
+    <div
+      className={`option-container
+      ${index % 2 === 0 ? "first-color" : "second-color"}`}
+    >
       <button className="option-btn">
         <FontAwesomeIcon icon={faArrowRight} />
       </button>
@@ -12,7 +15,7 @@ export default function Option({ name }) {
         <img />
       </div>
 
-      <p>{name}</p>
+      <p className="option-text">{name}</p>
     </div>
-  )
+  );
 }
