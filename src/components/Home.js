@@ -1,15 +1,24 @@
 import { useSelector } from "react-redux";
-import Option from "./Option";
-import '../styles/Home.css';
+import Tile from "./Tile";
+import "../styles/Home.css";
 
 export default function Home() {
-  const continents = useSelector(state => state.continents)
-  
+  const continents = useSelector((state) => state.continents);
+  useSelector((state) => console.log(state));
+
   return (
     <div className="home-container">
       {continents.map((continent, index) => {
-        return <Option name={continent.name} index={index} key={continent.id} id={continent.id}/>
+        return (
+          <Tile
+            name={continent.name}
+            index={index}
+            key={continent.id}
+            id={continent.id}
+            type={'isContinent'}
+          />
+        );
       })}
     </div>
-  )
+  );
 }

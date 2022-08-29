@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 function createContinent(name, id) {
   return ({
     name,
-    id
+    id,
+    countries: []
   })
 }
 const initialState = [
@@ -19,5 +20,9 @@ export const continentSlice = createSlice({
   name: 'continent',
   initialState,
   reducers: {
+    addCountries: (state, action) => {
+      const continent = state.find(el => el.name === action.payload.name);
+      continent.countries = action.payload.results
+    }
   }
 })

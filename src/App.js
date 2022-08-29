@@ -1,5 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
+import Continent from "./components/Continent";
 
 function App() {
   return (
@@ -7,6 +8,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="" element={<Home />}/>
+        <Route path="/continent" element={<Continent />} />
       </Routes>
     </BrowserRouter>
     </div>

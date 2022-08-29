@@ -2,3 +2,17 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
+
+.countries-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.continent-tile {
+  height: 150px;
+  text-align: end;
+  padding: 20px 30px;
+  color: white;
+  background-color: rgb(88, 137, 229);
+  font-weight: bold;
+}

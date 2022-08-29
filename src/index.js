@@ -7,7 +7,6 @@ import reportWebVitals from './reportWebVitals';
 import { store } from './redux/configureStore';
 import axios from 'axios';
 
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
