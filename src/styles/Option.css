@@ -6,6 +6,10 @@
   padding: 10px;
 }
 
+.option-container:hover {
+  opacity: 0.8;
+}
+
 .option-text {
   margin-top: auto;
   margin-bottom: 20px;
@@ -22,6 +26,11 @@
   width: 25px;
   color: white;
   border: 2px solid white;
+  cursor: pointer;
+}
+
+.option-btn:hover {
+  background-color: rgb(19, 45, 90);
 }
 
 .first-color {
