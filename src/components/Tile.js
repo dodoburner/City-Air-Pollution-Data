@@ -5,7 +5,7 @@ import "../styles/Tile.css";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 
-export default function Tile({ name, index, id, type }) {
+export default function Tile({ name, index, id, type, continentName }) {
   // const dispatch = useDispatch();
   // const continents = useSelector(state => state.continents)
 
@@ -66,7 +66,7 @@ export default function Tile({ name, index, id, type }) {
           </button>
         </Link>
       ) : (
-        <Link to="/country" state={{ id, name }}>
+        <Link to="/country" state={{ id, name, continentName }}>
           <button className="option-btn">
             <FontAwesomeIcon icon={faArrowRight} />
           </button>
