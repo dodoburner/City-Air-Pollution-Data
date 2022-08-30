@@ -24,7 +24,7 @@ export default function Tile({ name, index, id, type, topName }) {
         );
       case "isCity":
         return (
-          <Link to="/country" state={{ id, name, topName }}>
+          <Link to="/city" state={{ id, name, topName }}>
             <button className="option-btn">
               <FontAwesomeIcon icon={faArrowRight} />
             </button>

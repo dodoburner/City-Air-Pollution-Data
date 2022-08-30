@@ -16,7 +16,7 @@ export const countriesSlice = createSlice({
   initialState,
   reducers: {
     addCities: (state, action) => {
-      const continentName = action.payload.continentName;
+      const continentName = action.payload.topName;
       const country = state[continentName].find(el => el.name === action.payload.name);
       country.cities = [...action.payload.results]
     }

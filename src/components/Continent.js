@@ -16,7 +16,7 @@ export default function Continent() {
 
   // const countries = useSelector((state) => state.countries);
   // console.log(countries)
-  
+
   useEffect(() => {
     if (continent.countries.length === 0) {
       (async () => {
@@ -71,7 +71,7 @@ export default function Continent() {
           return (
             <Tile
               type="isCountry"
-              continentName = {name}
+              topName={name}
               name={country.name}
               index={index}
               key={country.objectId}
