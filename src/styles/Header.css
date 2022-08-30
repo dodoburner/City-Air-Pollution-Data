@@ -1,0 +1,15 @@
+header {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: rgb(67, 105, 178);
+}
+
+header button {
+  color: white;
+  background-color: inherit;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+}

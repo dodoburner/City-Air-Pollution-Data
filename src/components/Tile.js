@@ -1,12 +1,14 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
-import "../styles/Tile.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
+import '../styles/Tile.css';
 
-export default function Tile({ name, index, id, type, topName }) {
+export default function Tile({
+  name, index, id, type, topName,
+}) {
   const returnLink = () => {
     switch (type) {
-      case "isContinent":
+      case 'isContinent':
         return (
           <Link to="/continent" state={{ id, name }}>
             <button className="option-btn">
@@ -14,7 +16,7 @@ export default function Tile({ name, index, id, type, topName }) {
             </button>
           </Link>
         );
-      case "isCountry":
+      case 'isCountry':
         return (
           <Link to="/country" state={{ id, name, topName }}>
             <button className="option-btn">
@@ -22,7 +24,7 @@ export default function Tile({ name, index, id, type, topName }) {
             </button>
           </Link>
         );
-      case "isCity":
+      case 'isCity':
         return (
           <Link to="/city" state={{ id, name, topName }}>
             <button className="option-btn">
@@ -36,7 +38,7 @@ export default function Tile({ name, index, id, type, topName }) {
   return (
     <div
       className={`option-container
-      ${index % 2 === 0 ? "first-color" : "second-color"}`}
+      ${index % 2 === 0 ? 'first-color' : 'second-color'}`}
     >
       {returnLink()}
       <div className="img-container">
