@@ -61,12 +61,12 @@ export default function Continent() {
 
   return (
     <div className="continent-page">
-      <div className="continent-tile">
+      <div className="top-tile">
         <h1>{name}</h1>
         <p>{continent.countries.length} available countries</p>
       </div>
 
-      <div className="countries-container">
+      <div className="list-container">
         {continent.countries.map((country, index) => {
           return (
             <Tile

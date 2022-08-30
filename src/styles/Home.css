@@ -3,12 +3,12 @@
   grid-template-columns: 1fr 1fr;
 }
 
-.countries-container {
+.list-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
-.continent-tile {
+.top-tile {
   height: 150px;
   text-align: end;
   padding: 20px 30px;
@@ -16,6 +16,6 @@
   background-color: rgb(88, 137, 229);
 }
 
-.continent-tile h1 {
+.top-tile h1 {
   font-weight: bold;
 }
