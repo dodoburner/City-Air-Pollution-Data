@@ -2,10 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import './styles/index.css';
-import axios from 'axios';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { store } from './redux/configureStore';
+import store from './redux/configureStore';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -18,14 +17,3 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
-
-// axios.get('http://api.airvisual.com/v2/countries?key=d4281486-c6e5-40f2-a45a-666c2a800bae')
-// .then(res => console.log(res.data.data))
-
-// axios.get('https://parseapi.back4app.com/classes/Continentscountriescities_Continent?limit=10&keys=name', {
-//   headers: {
-//     'X-Parse-Application-Id': 'mfpmjU4NFMM0RudR7jTsImrVvH16ZG7aqJhqWoiZ', // This is your app's application id
-//     'X-Parse-REST-API-Key': '5kDXPpyzOXoLdqeid6koqIX7TVKpK97k1GEw33BK', // This is your app's REST API key
-//   }}
-// )
-// .then(res => console.log(res.data.results))

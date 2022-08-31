@@ -1,6 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 const initialState = [];
 
@@ -12,22 +11,21 @@ function createCountry(name, id) {
   };
 }
 
-export const countriesSlice = createSlice({
-  name: "countries",
+export default createSlice({
+  name: 'countries',
   initialState,
   reducers: {
     addCities: (state, action) => {
       const continentName = action.payload.topName;
       const continent = state.find(
-        (el) => el.name === continentName
+        (el) => el.name === continentName,
       );
-      const country = continent.countries.find(el => el.name === action.payload.name)
+      const country = continent.countries.find((el) => el.name === action.payload.name);
       country.cities = [...action.payload.results];
     },
     addCountries: (state, action) => {
-      const countries = action.payload.results.map((country) =>
-        createCountry(country.name, country.objectId)
-      );
+      const countries = action.payload.results.map((country) => (
+        createCountry(country.name, country.objectId)));
       const { name } = action.payload;
       state.push({ name, countries });
     },

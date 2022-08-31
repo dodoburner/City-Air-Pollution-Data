@@ -1,10 +1,8 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
-import axios from "axios";
-import { countriesSlice } from "../redux/countriesSlice";
-import { citiesSlice } from "../redux/citiesSlice";
-import Tile from "./Tile";
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import citiesSlice from '../redux/citiesSlice';
+import Tile from './Tile';
 
 export default function Country() {
   const location = useLocation();
@@ -13,7 +11,7 @@ export default function Country() {
 
   const countries = useSelector((state) => state.cities);
   const country = countries.find((el) => el.name === name) || {
-    name: "",
+    name: '',
     cities: [],
   };
   const { cities } = country;
@@ -24,22 +22,22 @@ export default function Country() {
         const where = encodeURIComponent(
           JSON.stringify({
             country: {
-              __type: "Pointer",
-              className: "Continentscountriescities_Country",
+              __type: 'Pointer',
+              className: 'Continentscountriescities_Country',
               objectId: id,
             },
-          })
+          }),
         );
         const response = await fetch(
           `https://parseapi.back4app.com/classes/Continentscountriescities_City?limit=20&order=-population&keys=name,location&where=${where}`,
           {
             headers: {
-              "X-Parse-Application-Id":
-                "mfpmjU4NFMM0RudR7jTsImrVvH16ZG7aqJhqWoiZ", // This is your app's application id
-              "X-Parse-REST-API-Key":
-                "5kDXPpyzOXoLdqeid6koqIX7TVKpK97k1GEw33BK", // This is your app's REST API key
+              'X-Parse-Application-Id':
+                'mfpmjU4NFMM0RudR7jTsImrVvH16ZG7aqJhqWoiZ', // This is your app's application id
+              'X-Parse-REST-API-Key':
+                '5kDXPpyzOXoLdqeid6koqIX7TVKpK97k1GEw33BK', // This is your app's REST API key
             },
-          }
+          },
         );
         const data = await response.json();
         const { results } = data; // Here you have the data that you need
@@ -53,7 +51,11 @@ export default function Country() {
     <div>
       <div className="top-tile">
         <h1>{name}</h1>
-        <p>{cities.length} available cities</p>
+        <p>
+          {cities.length}
+          {' '}
+          available cities
+        </p>
       </div>
 
       <div>

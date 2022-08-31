@@ -1,7 +1,7 @@
-import { useSelector } from "react-redux";
-import Tile from "./Tile";
-import SearchBar from "./SearchBar";
-import "../styles/Home.css";
+import { useSelector } from 'react-redux';
+import Tile from './Tile';
+import SearchBar from './SearchBar';
+import '../styles/Home.css';
 
 export default function Home() {
   const continents = useSelector((state) => state.continents);

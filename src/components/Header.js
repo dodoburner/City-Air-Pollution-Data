@@ -6,8 +6,8 @@ import '../styles/Header.css';
 export default function Header() {
   return (
     <header>
-      <Link to="">
-        <button>
+      <Link to="/">
+        <button type="button">
           <FontAwesomeIcon icon={faAngleLeft} />
         </button>
       </Link>

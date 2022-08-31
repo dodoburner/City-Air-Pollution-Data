@@ -16,7 +16,7 @@ const initialState = [
   createContinent('Oceania', 'E6LHZzkHr6'),
 ];
 
-export const continentSlice = createSlice({
+export default createSlice({
   name: 'continent',
   initialState,
   reducers: {},
