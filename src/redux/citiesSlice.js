@@ -7,24 +7,13 @@ const createCity = (name, id, lat, long) => ({
   id,
   lat,
   long,
-  info: [],
+  info: {pollution: [], weather: []},
 });
 
 export default createSlice({
   name: 'cities',
   initialState,
-  reducers: {
-    // addCities: (state, action) => {
-    //   const cities = action.payload.results.map((city) => createCity(
-    //     city.name,
-    //     city.objectId,
-    //     city.location.latitude,
-    //     city.location.longitude,
-    //   ));
-    //   const country = action.payload.name;
-    //   state.push({ name: country, cities });
-    // },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase('cities/getCityData/fulfilled', (state, action) => {
       const countryName = action.payload.topName;
