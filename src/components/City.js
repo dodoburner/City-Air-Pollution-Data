@@ -8,10 +8,11 @@ import "../styles/City.css";
 export default function City() {
   const location = useLocation();
   const dispatch = useDispatch();
-  const { id, name, topName } = location.state;
+  const { name, topName } = location.state;
 
-  const cities = useSelector((state) => state.cities[topName]);
-  const city = cities.find((el) => el.name === name);
+  const countries = useSelector((state) => state.cities);
+  const country = countries.find((el) => el.name === topName);
+  const city = country.cities.find((el) => el.name === name)
   const { pollution } = city.info;
   const { weather } = city.info;
 
