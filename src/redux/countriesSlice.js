@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { continentSlice } from './continentsSlice';
 
-const initialState = {};
+const initialState = [];
 
 function createCountry(name, id) {
   return ({
@@ -20,12 +20,10 @@ export const countriesSlice = createSlice({
       const country = state[continentName].find((el) => el.name === action.payload.name);
       country.cities = [...action.payload.results];
     },
-  },
-  extraReducers: (builder) => {
-    builder.addCase(continentSlice.actions.addCountries, (state, action) => {
+    addCountries: (state, action) => {
       const countries = action.payload.results.map((country) => createCountry(country.name, country.objectId));
       const { name } = action.payload;
-      state[name] = countries;
-    });
+      state.push({name, countries})
+    }
   },
 });

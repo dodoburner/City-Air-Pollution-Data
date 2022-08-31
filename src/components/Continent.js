@@ -3,20 +3,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 import { continentSlice } from '../redux/continentsSlice';
-import { countriesSlice } from '../redux/countriesSlice';
 import Tile from './Tile';
-
-const count = 0;
+import { countriesSlice } from '../redux/countriesSlice';
 
 export default function Continent() {
   const location = useLocation();
   const dispatch = useDispatch();
   const { id, name } = location.state;
-  const continents = useSelector((state) => state.continents);
-  const continent = continents.find((continent) => continent.name === name);
+  // const continents = useSelector((state) => state.continents);
+  // const continent = continents.find((continent) => continent.name === name);
+  const countries = useSelector((state) => state.countries);
+  const continent = countries.find((continent) => continent.name === name) || {name: '', countries: []};
 
-  // const countries = useSelector((state) => state.countries);
-  // console.log(countries)
+  console.log(continent)
 
   useEffect(() => {
     if (continent.countries.length === 0) {
@@ -55,10 +54,10 @@ export default function Continent() {
             return result;
           }
         });
-        dispatch(continentSlice.actions.addCountries({ name, results }));
+        dispatch(countriesSlice.actions.addCountries({ name, results }));
       })();
     }
-  }, [continents]);
+  }, [continent]);
 
   return (
     <div className="continent-page">
@@ -78,8 +77,8 @@ export default function Continent() {
             topName={name}
             name={country.name}
             index={index}
-            key={country.objectId}
-            id={country.objectId}
+            key={country.id}
+            id={country.id}
           />
         ))}
       </div>

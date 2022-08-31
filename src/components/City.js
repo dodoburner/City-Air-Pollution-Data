@@ -95,10 +95,10 @@ export default function City() {
           <div className={`polution-info-container ${aqiDataCity.color}`}>
             <div>
               <p className="aqi-number">US AQI: <span>{pollution.aqius}</span></p>
-              <p className="main-polutant">MAIN POLUTANT: <span>{pollution.mainus}</span></p>
+              <p className="main-polutant">Main Polutant: <span>{pollution.mainus}</span></p>
             </div>
 
-            <h3><span>LIVE AQI INDEX</span> {aqiDataCity.level}</h3>
+            <h3><span>Live AQI Index</span><br /> {aqiDataCity.level}</h3>
           </div>
 
           <p className="aqi-desc">{aqiDataCity.description}</p>

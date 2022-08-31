@@ -3,11 +3,12 @@
   display: flex;
   font-size: 16px;
   height: 200px;
+  font-weight: bold;
 }
 
 h3 {
   margin-left: auto;
-  font-size: 26px;
+  font-size: 24px;
   text-align: end;
 }
 
@@ -64,6 +65,11 @@ h3 span {
 
 .yellow {
   background-color: yellow;
+}
+
+.orange {
+  background-color: orange;
+  color: white;
 }
 
 .green {
