@@ -1,0 +1,81 @@
+.polution-info-container {
+  padding: 10px;
+  display: flex;
+  font-size: 16px;
+  height: 200px;
+}
+
+h3 {
+  margin-left: auto;
+  font-size: 26px;
+  text-align: end;
+}
+
+h3 span {
+  font-size: 14px;
+}
+
+.aqi-number {
+  background-color: rgb(67, 105, 178);
+  height: 100px;
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+.aqi-number span {
+  font-size: 30px;
+  margin-top: auto;
+}
+
+.aqi-desc {
+  background-color: rgb(53, 84, 139);
+  color: white;
+  padding: 40px 20px;
+}
+
+.weather-info-container {
+  margin-top: 20px;
+  padding: 10px;
+  color: white;
+  display: flex;
+}
+
+.weather-icon {
+  height: 100px;
+}
+
+.weather-info {
+  margin-left: auto;
+}
+
+.weather-info p {
+  margin-bottom: 10px;
+}
+
+.red {
+  background-color: red;
+  color: white;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.green {
+  background-color: lightgreen;
+}
+
+.purple {
+  background-color: purple;
+  color: white;
+}
+
+.marron {
+  background-color: maroon;
+  color: white;
+}
