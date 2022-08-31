@@ -4,7 +4,6 @@ function createContinent(name, id) {
   return ({
     name,
     id,
-    countries: [],
   });
 }
 const initialState = [

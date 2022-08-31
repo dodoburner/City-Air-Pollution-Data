@@ -7,29 +7,13 @@ function createCountry(name, id) {
   return {
     name,
     id,
-    cities: [],
   };
 }
 
 export default createSlice({
   name: 'countries',
   initialState,
-  reducers: {
-    addCities: (state, action) => {
-      const continentName = action.payload.topName;
-      const continent = state.find(
-        (el) => el.name === continentName,
-      );
-      const country = continent.countries.find((el) => el.name === action.payload.name);
-      country.cities = [...action.payload.results];
-    },
-    addCountries: (state, action) => {
-      const countries = action.payload.results.map((country) => (
-        createCountry(country.name, country.objectId)));
-      const { name } = action.payload;
-      state.push({ name, countries });
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder.addCase("countries/fetchCountries/fulfilled", (state, action) => {
       const countries = action.payload.results.map((country) =>
@@ -46,15 +30,15 @@ export const fetchCountries = createAsyncThunk(
   async ({name, id}) => {
     const where = encodeURIComponent(
       JSON.stringify({
-        country: {
+        continent: {
           __type: 'Pointer',
-          className: 'Continentscountriescities_Country',
+          className: 'Continentscountriescities_Continent',
           objectId: id,
         },
       }),
     );
     const response = await fetch(
-      `https://parseapi.back4app.com/classes/Continentscountriescities_City?limit=20&order=-population&keys=name,location&where=${where}`,
+      `https://parseapi.back4app.com/classes/Continentscountriescities_Country?keys=name&where=${where}`,
       {
         headers: {
           'X-Parse-Application-Id':
@@ -64,8 +48,20 @@ export const fetchCountries = createAsyncThunk(
         },
       },
     );
-    const data = await response.json();
-    const { results } = data; // Here you have the data that you need
+    const data = await response.json(); // Here you have the data that you need
+    let { results } = data;
+
+    const data1 = await axios.get(
+      'http://api.airvisual.com/v2/countries?key=d4281486-c6e5-40f2-a45a-666c2a800bae',
+    );
+    let allCountries = data1.data.data;
+    allCountries = allCountries.map((country) => country.country);
+
+    results = results.filter((result) => {
+      if (allCountries.includes(result.name)) {
+        return result;
+      }
+   });
     return { results, name }
   }
 );
