@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios';
-import citiesSlice from '../redux/citiesSlice';
+import citiesSlice, { getCities } from '../redux/citiesSlice';
 import '../styles/City.css';
 
 export default function City() {
@@ -62,20 +62,7 @@ export default function City() {
 
   useEffect(() => {
     if (city.info.length === 0) {
-      (async () => {
-        const data = await axios.get(
-          `http://api.airvisual.com/v2/nearest_city?lat=${city.lat}&lon=${city.long}&key=d4281486-c6e5-40f2-a45a-666c2a800bae`,
-        );
-        const results = data.data.data.current;
-
-        dispatch(
-          citiesSlice.actions.addInfo({
-            topName,
-            name,
-            results,
-          }),
-        );
-      })();
+      dispatch(getCities({lat: city.lat, long: city.long, topName, name}))
     }
   }, []);
 
