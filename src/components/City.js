@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import axios from 'axios';
-import citiesSlice, { getCities } from '../redux/citiesSlice';
+import { getCityData } from '../redux/citiesSlice';
 import '../styles/City.css';
 
 export default function City() {
@@ -62,7 +61,7 @@ export default function City() {
 
   useEffect(() => {
     if (city.info.length === 0) {
-      dispatch(getCities({lat: city.lat, long: city.long, topName, name}))
+      dispatch(getCityData({lat: city.lat, long: city.long, topName, name}))
     }
   }, []);
 
