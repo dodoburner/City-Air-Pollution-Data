@@ -12,6 +12,7 @@ export default function City() {
   const countries = useSelector((state) => state.cities);
   const country = countries.find((el) => el.name === topName);
   const city = country.cities.find((el) => el.name === name);
+  console.log(location, country, city);
   const { pollution } = city.info;
   const { weather } = city.info;
 

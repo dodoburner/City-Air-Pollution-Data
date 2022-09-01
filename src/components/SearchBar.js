@@ -1,25 +1,20 @@
-// import { useNavigate } from "react-router-dom";
-// import { Link } from "react-router-dom";
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux/es/exports';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux/es/exports';
 import { getCityLocation } from '../redux/citiesSlice';
 
 export default function SearchBar() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [location, setLocation] = useState('');
-  const cities = useSelector((state) => state.cities);
-  const city = cities.find((el) => el.name === location);
-  console.log(city);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(getCityLocation({ name: location }));
+    (async () => {
+      await dispatch(getCityLocation({ name: location }));
+      navigate('/city', { state: { name: location, topName: 'searchBar' } });
+    })();
   };
-
-  useEffect(() => {
-    console.log(cities);
-  }, [cities]);
 
   return (
     <form className="search-bar" onSubmit={handleSubmit}>

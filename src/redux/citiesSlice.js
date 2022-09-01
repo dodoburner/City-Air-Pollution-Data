@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const initialState = [];
+const initialState = [{ name: 'searchBar', cities: [] }];
 const createCity = (name, id, lat, long) => ({
   name,
   id,
@@ -34,7 +34,8 @@ export default createSlice({
     });
 
     builder.addCase('cities/getCityLocation/fulfilled', (state, action) => {
-      state.push(action.payload);
+      const searchBarState = state.find((el) => el.name === 'searchBar');
+      searchBarState.cities.push(action.payload);
     });
   },
 });
