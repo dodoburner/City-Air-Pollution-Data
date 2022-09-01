@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux/es/exports';
+import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getCityLocation } from '../redux/citiesSlice';
 
 export default function SearchBar() {
@@ -25,6 +27,9 @@ export default function SearchBar() {
         value={location}
         onChange={(e) => { setLocation(e.target.value); }}
       />
+      <button type="submit" className="search-bar-btn">
+        <FontAwesomeIcon icon={faAngleRight} />
+      </button>
     </form>
   );
 }
