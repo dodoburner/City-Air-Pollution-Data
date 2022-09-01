@@ -85,3 +85,13 @@ h3 span {
   background-color: maroon;
   color: white;
 }
+
+.no-page {
+  font-size: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: white;
+  font-weight: bold;
+}

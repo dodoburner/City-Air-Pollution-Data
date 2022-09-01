@@ -9,6 +9,7 @@ export default function Home() {
   return (
     <div className="home-container">
       <SearchBar />
+      {' '}
       <div className="list-container">
         {continents.map((continent, index) => (
           <Tile

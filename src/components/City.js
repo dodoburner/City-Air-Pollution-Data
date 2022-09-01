@@ -10,9 +10,8 @@ export default function City() {
   const { name, topName } = location.state;
 
   const countries = useSelector((state) => state.cities);
-  const country = countries.find((el) => el.name === topName);
-  const city = country.cities.find((el) => el.name === name);
-  console.log(location, country, city);
+  const country = countries.find((el) => el.name === topName) || { cities: [] };
+  const city = country.cities.find((el) => el.name === name) || { info: { pollution: [] } };
   const { pollution } = city.info;
   const { weather } = city.info;
 
@@ -64,7 +63,7 @@ export default function City() {
   const aqiDataCity = aqiData.find((el) => el.maxValue > pollution.aqius) || {};
 
   useEffect(() => {
-    if (pollution.length === 0) {
+    if (pollution.length === 0 && country.cities.length !== 0) {
       dispatch(getCityData({
         lat: city.lat, long: city.long, topName, name,
       }));
@@ -73,69 +72,78 @@ export default function City() {
 
   return (
     <div className="city-container">
-      <div className="top-tile">
-        <h1>{name}</h1>
-      </div>
-
-      <div className={`polution-info-container ${aqiDataCity.color}`}>
+      {pollution.length === 0 ? (
+        <div className="no-page">
+          PAGE DOESN&apos;T EXIST
+        </div>
+      ) : (
         <div>
-          <p className="aqi-number">
-            US AQI:
-            {' '}
-            <span>{pollution.aqius}</span>
-          </p>
-          <p className="main-polutant">
-            Main Polutant:
-            {' '}
-            <span>{pollution.mainus}</span>
-          </p>
+          <div className="top-tile">
+            <h1>{name}</h1>
+          </div>
+
+          <div className={`polution-info-container ${aqiDataCity.color}`}>
+            <div>
+              <p className="aqi-number">
+                US AQI:
+                {' '}
+                <span>{pollution.aqius}</span>
+              </p>
+              <p className="main-polutant">
+                Main Polutant:
+                {' '}
+                <span>{pollution.mainus}</span>
+              </p>
+            </div>
+
+            <h3>
+              <span>Live AQI Index</span>
+              <br />
+              {' '}
+              {aqiDataCity.level}
+            </h3>
+          </div>
+
+          <p className="aqi-desc">{aqiDataCity.description}</p>
+
+          <div className="weather-info-container">
+            <img
+              src={`https://www.airvisual.com/images/${weather.ic}.png`}
+              alt="weather icon"
+              className="weather-icon"
+            />
+            <div className="weather-info">
+              <p>
+                Humidity:
+                {' '}
+                {weather.hu}
+                %
+              </p>
+              <p>
+                Pressure:
+                {' '}
+                {weather.pr}
+                {' '}
+                hPa
+              </p>
+              <p>
+                Wind:
+                {' '}
+                {weather.ws}
+                {' '}
+                m/s
+              </p>
+              <p>
+                Temperature:
+                {' '}
+                {weather.tp}
+                °C
+              </p>
+            </div>
+          </div>
         </div>
+      )}
 
-        <h3>
-          <span>Live AQI Index</span>
-          <br />
-          {' '}
-          {aqiDataCity.level}
-        </h3>
-      </div>
-
-      <p className="aqi-desc">{aqiDataCity.description}</p>
-
-      <div className="weather-info-container">
-        <img
-          src={`https://www.airvisual.com/images/${weather.ic}.png`}
-          alt="weather icon"
-          className="weather-icon"
-        />
-        <div className="weather-info">
-          <p>
-            Humidity:
-            {' '}
-            {weather.hu}
-            %
-          </p>
-          <p>
-            Pressure:
-            {' '}
-            {weather.pr}
-            {' '}
-            hPa
-          </p>
-          <p>
-            Wind:
-            {' '}
-            {weather.ws}
-            {' '}
-            m/s
-          </p>
-          <p>
-            Temperature:
-            {' '}
-            {weather.tp}
-            °C
-          </p>
-        </div>
-      </div>
     </div>
   );
 }
