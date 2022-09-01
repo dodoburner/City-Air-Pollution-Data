@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import citiesSlice, { getCities } from '../redux/citiesSlice';
+import { getCities } from '../redux/citiesSlice';
 import Tile from './Tile';
 
 export default function Country() {
@@ -18,7 +18,7 @@ export default function Country() {
 
   useEffect(() => {
     if (cities.length === 0) {
-      dispatch(getCities({id, name}))
+      dispatch(getCities({ id, name }));
     }
   }, []);
 

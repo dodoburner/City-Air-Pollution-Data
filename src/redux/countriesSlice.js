@@ -15,10 +15,9 @@ export default createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase("countries/fetchCountries/fulfilled", (state, action) => {
-      const countries = action.payload.results.map((country) =>
-        createCountry(country.name, country.objectId)
-      );
+    builder.addCase('countries/fetchCountries/fulfilled', (state, action) => {
+      const countries = action.payload.results.map((country) => (
+        createCountry(country.name, country.objectId)));
       const { name } = action.payload;
       state.push({ name, countries });
     });
@@ -26,8 +25,8 @@ export default createSlice({
 });
 
 export const fetchCountries = createAsyncThunk(
-  "countries/fetchCountries",
-  async ({name, id}) => {
+  'countries/fetchCountries',
+  async ({ name, id }) => {
     const where = encodeURIComponent(
       JSON.stringify({
         continent: {
@@ -57,11 +56,7 @@ export const fetchCountries = createAsyncThunk(
     let allCountries = data1.data.data;
     allCountries = allCountries.map((country) => country.country);
 
-    results = results.filter((result) => {
-      if (allCountries.includes(result.name)) {
-        return result;
-      }
-   });
-    return { results, name }
-  }
+    results = results.filter((result) => allCountries.includes(result.name));
+    return { results, name };
+  },
 );

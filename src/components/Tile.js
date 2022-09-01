@@ -34,6 +34,7 @@ export default function Tile({
           </Link>
         );
       default:
+        return null;
     }
   }
 

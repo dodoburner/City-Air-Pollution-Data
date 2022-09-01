@@ -1,9 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import axios from 'axios';
 import Tile from './Tile';
-import countriesSlice, { fetchCountries } from '../redux/countriesSlice';
+import { fetchCountries } from '../redux/countriesSlice';
 
 export default function Continent() {
   const location = useLocation();
@@ -17,7 +16,7 @@ export default function Continent() {
 
   useEffect(() => {
     if (continent.countries.length === 0) {
-      dispatch(fetchCountries({ name, id }))
+      dispatch(fetchCountries({ name, id }));
     }
   }, [continent]);
 

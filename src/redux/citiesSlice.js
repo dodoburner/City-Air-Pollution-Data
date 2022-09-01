@@ -7,7 +7,7 @@ const createCity = (name, id, lat, long) => ({
   id,
   lat,
   long,
-  info: {pollution: [], weather: []},
+  info: { pollution: [], weather: [] },
 });
 
 export default createSlice({
@@ -22,7 +22,7 @@ export default createSlice({
       );
       const city = country.cities.find((el) => el.name === action.payload.name);
       city.info = action.payload.results;
-    })
+    });
 
     builder.addCase('cities/getCities/fulfilled', (state, action) => {
       const cities = action.payload.results.map((city) => createCity(
@@ -33,19 +33,21 @@ export default createSlice({
       ));
       const country = action.payload.name;
       state.push({ name: country, cities });
-    })
-  }
+    });
+  },
 });
 
-export const getCityData = createAsyncThunk('cities/getCityData', async ({lat, long, topName, name}) => {
+export const getCityData = createAsyncThunk('cities/getCityData', async ({
+  lat, long, topName, name,
+}) => {
   const data = await axios.get(
     `http://api.airvisual.com/v2/nearest_city?lat=${lat}&lon=${long}&key=d4281486-c6e5-40f2-a45a-666c2a800bae`,
   );
   const results = data.data.data.current;
-  return { results, topName, name }
-})
+  return { results, topName, name };
+});
 
-export const getCities = createAsyncThunk('cities/getCities', async ({id, name}) => {
+export const getCities = createAsyncThunk('cities/getCities', async ({ id, name }) => {
   const where = encodeURIComponent(
     JSON.stringify({
       country: {
@@ -68,5 +70,5 @@ export const getCities = createAsyncThunk('cities/getCities', async ({id, name})
   );
   const data = await response.json();
   const { results } = data; // Here you have the data that you need
-  return { results, name }
-})
+  return { results, name };
+});
