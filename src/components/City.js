@@ -7,9 +7,9 @@ import '../styles/City.css';
 export default function City() {
   const location = useLocation();
   const dispatch = useDispatch();
-  const { name, topName } = location.state;
+  const { name, topName } = location.state || { topName: '', name: '' };
 
-  const countries = useSelector((state) => state.cities);
+  const countries = useSelector((state) => state.cities) || [];
   const country = countries.find((el) => el.name === topName) || { cities: [] };
   const city = country.cities.find((el) => el.name === name) || { info: { pollution: [] } };
   const { pollution } = city.info;
@@ -143,7 +143,6 @@ export default function City() {
           </div>
         </div>
       )}
-
     </div>
   );
 }

@@ -7,8 +7,8 @@ import { fetchCountries } from '../redux/countriesSlice';
 export default function Continent() {
   const location = useLocation();
   const dispatch = useDispatch();
-  const { id, name } = location.state;
-  const countries = useSelector((state) => state.countries);
+  const { id, name } = location.state || { id: '', name: '' };
+  const countries = useSelector((state) => state.countries) || [];
   const continent = countries.find((continent) => continent.name === name) || {
     name: '',
     countries: [],
