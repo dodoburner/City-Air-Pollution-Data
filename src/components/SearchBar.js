@@ -12,7 +12,7 @@ export default function SearchBar() {
 
   const handleSubmit = (e) => {
     const correctInputConversion = location.charAt(0).toUpperCase() + location.slice(1);
-    console.log(correctInputConversion)
+    console.log(correctInputConversion);
     e.preventDefault();
     (async () => {
       await dispatch(getCityLocation({ name: correctInputConversion }));
