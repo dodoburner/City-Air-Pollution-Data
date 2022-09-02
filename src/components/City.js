@@ -1,17 +1,15 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { getCityData } from '../redux/citiesSlice';
 import '../styles/City.css';
 
 export default function City() {
-  const location = useLocation();
   const dispatch = useDispatch();
-  const { name, topName } = location.state || { topName: '', name: '' };
+  const { city: name, country } = useParams();
 
-  const countries = useSelector((state) => state.cities) || [];
-  const country = countries.find((el) => el.name === topName) || { cities: [] };
-  const city = country.cities.find((el) => el.name === name) || { info: { pollution: [] } };
+  const cities = useSelector((state) => state.cities) || [];
+  const city = cities.find((city) => city.name === name) || { info: { pollution: [] } }
   const { pollution } = city.info;
   const { weather } = city.info;
 
@@ -63,9 +61,9 @@ export default function City() {
   const aqiDataCity = aqiData.find((el) => el.maxValue > pollution.aqius) || {};
 
   useEffect(() => {
-    if (pollution.length === 0 && country.cities.length !== 0) {
+    if (pollution.length === 0 && cities.length !== 0) {
       dispatch(getCityData({
-        lat: city.lat, long: city.long, topName, name,
+        lat: city.lat, long: city.long, name,
       }));
     }
   }, []);

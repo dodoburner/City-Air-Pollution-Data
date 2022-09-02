@@ -19,7 +19,7 @@ export default function Tile({
         );
       case 'isCountry':
         return (
-          <Link to={name} state={{ id, name }}>
+          <Link to={name}>
             <button type="button" className="option-btn">
               <FontAwesomeIcon icon={faArrowRight} />
             </button>

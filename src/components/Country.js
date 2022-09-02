@@ -5,10 +5,10 @@ import { getCities } from '../redux/citiesSlice';
 import Tile from './Tile';
 
 export default function Country() {
-  const { country: name, continent: topName } = useParams();
+  const { country: name } = useParams();
   const dispatch = useDispatch();
   const country = useSelector((state) => state.countries)
-    .find((el) => el.name === name) || {name: '', continent: '', id: ''};
+    .find((el) => el.name === name) || { name: '', continent: '', id: '' };
   const { id } = country;
 
   const allCities = useSelector((state) => state.cities);

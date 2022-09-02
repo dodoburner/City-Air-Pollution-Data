@@ -17,9 +17,7 @@ export default createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase('cities/getCityData/fulfilled', (state, action) => {
-      const countryName = action.payload.topName;
-      const country = state.find((el) => el.name === countryName);
-      const city = country.cities.find((el) => el.name === action.payload.name);
+      const city = state.find((city) => city.name === action.payload.name);
       city.info = action.payload.results;
     });
 
@@ -32,7 +30,7 @@ export default createSlice({
           city.objectId,
           city.location.latitude,
           city.location.longitude,
-      ))));
+        ))));
     });
 
     builder.addCase('cities/getCityLocation/fulfilled', (state, action) => {
@@ -45,13 +43,13 @@ export default createSlice({
 export const getCityData = createAsyncThunk(
   'cities/getCityData',
   async ({
-    lat, long, topName, name,
+    lat, long, name,
   }) => {
     const data = await axios.get(
       `http://api.airvisual.com/v2/nearest_city?lat=${lat}&lon=${long}&key=d4281486-c6e5-40f2-a45a-666c2a800bae`,
     );
     const results = data.data.data.current;
-    return { results, topName, name };
+    return { results, name };
   },
 );
 
