@@ -7,14 +7,12 @@ import Tile from './Tile';
 export default function Country() {
   const { country: name, continent: topName } = useParams();
   const dispatch = useDispatch();
-  const continent = useSelector((state) => state.countries).find((el) => el.name === topName);
-  const { id } = continent.countries.find((el) => el.name === name);
+  const country = useSelector((state) => state.countries)
+    .find((el) => el.name === name) || {name: '', continent: '', id: ''};
+  const { id } = country;
 
-  const countries = useSelector((state) => state.cities);
-  const { cities } = countries.find((el) => el.name === name) || {
-    name: '',
-    cities: [],
-  };
+  const allCities = useSelector((state) => state.cities);
+  const cities = allCities.filter((city) => city.country === name) || [];
 
   useEffect(() => {
     if (cities.length === 0) {

@@ -1,9 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const initialState = [{ name: 'searchBar', cities: [] }];
-const createCity = (name, id, lat, long) => ({
+const initialState = [];
+const createCity = (name, country, id, lat, long) => ({
   name,
+  country,
   id,
   lat,
   long,
@@ -23,14 +24,15 @@ export default createSlice({
     });
 
     builder.addCase('cities/getCities/fulfilled', (state, action) => {
-      const cities = action.payload.results.map((city) => createCity(
-        city.name,
-        city.objectId,
-        city.location.latitude,
-        city.location.longitude,
-      ));
       const country = action.payload.name;
-      state.push({ name: country, cities });
+      action.payload.results.map((city) => (
+        state.push(createCity(
+          city.name,
+          country,
+          city.objectId,
+          city.location.latitude,
+          city.location.longitude,
+      ))));
     });
 
     builder.addCase('cities/getCityLocation/fulfilled', (state, action) => {
