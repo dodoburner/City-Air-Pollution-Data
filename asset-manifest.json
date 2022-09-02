@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/dodoburner/europe-air-pollution/static/css/main.b4861064.css",
+    "main.js": "/dodoburner/europe-air-pollution/static/js/main.b5e11dbc.js",
+    "static/js/787.7697b121.chunk.js": "/dodoburner/europe-air-pollution/static/js/787.7697b121.chunk.js",
+    "index.html": "/dodoburner/europe-air-pollution/index.html",
+    "main.b4861064.css.map": "/dodoburner/europe-air-pollution/static/css/main.b4861064.css.map",
+    "main.b5e11dbc.js.map": "/dodoburner/europe-air-pollution/static/js/main.b5e11dbc.js.map",
+    "787.7697b121.chunk.js.map": "/dodoburner/europe-air-pollution/static/js/787.7697b121.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b4861064.css",
+    "static/js/main.b5e11dbc.js"
+  ]
+}
