@@ -11,7 +11,7 @@ export default function Tile({
     switch (type) {
       case 'isContinent':
         return (
-          <Link to="/continent" state={{ id, name }}>
+          <Link to={name} state={{ id, name }}>
             <button type="button" className="option-btn">
               <FontAwesomeIcon icon={faArrowRight} />
             </button>
@@ -19,7 +19,7 @@ export default function Tile({
         );
       case 'isCountry':
         return (
-          <Link to="/country" state={{ id, name, topName }}>
+          <Link to={name} state={{ id, name, topName }}>
             <button type="button" className="option-btn">
               <FontAwesomeIcon icon={faArrowRight} />
             </button>
@@ -27,7 +27,7 @@ export default function Tile({
         );
       case 'isCity':
         return (
-          <Link to="/city" state={{ id, name, topName }}>
+          <Link to={name} state={{ id, name, topName }}>
             <button type="button" className="option-btn">
               <FontAwesomeIcon icon={faArrowRight} />
             </button>

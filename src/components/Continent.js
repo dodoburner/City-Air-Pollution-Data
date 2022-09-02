@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Tile from './Tile';
 import { fetchCountries } from '../redux/countriesSlice';
 
 export default function Continent() {
-  const location = useLocation();
+  const { continent: name } = useParams();
   const dispatch = useDispatch();
-  const { id, name } = location.state || { id: '', name: '' };
+  const { id } = useSelector((state) => state.continents).find((el) => el.name === name);
   const countries = useSelector((state) => state.countries) || [];
   const continent = countries.find((continent) => continent.name === name) || {
     name: '',
@@ -18,7 +18,7 @@ export default function Continent() {
     if (continent.countries.length === 0) {
       dispatch(fetchCountries({ name, id }));
     }
-  }, [continent]);
+  }, []);
 
   return (
     <div className="continent-page">

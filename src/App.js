@@ -12,9 +12,9 @@ function App() {
         <Header />
         <Routes>
           <Route path="" element={<Home />} />
-          <Route path="/continent" element={<Continent />} />
-          <Route path="/country" element={<Country />} />
-          <Route path="/city" element={<City />} />
+          <Route path="/:continent" element={<Continent />} />
+          <Route path="/:continent/:country" element={<Country />} />
+          <Route path="/:continent/:country/:city" element={<City />} />
         </Routes>
       </BrowserRouter>
     </div>
