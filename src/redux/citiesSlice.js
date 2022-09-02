@@ -34,8 +34,7 @@ export default createSlice({
     });
 
     builder.addCase('cities/getCityLocation/fulfilled', (state, action) => {
-      const searchBarState = state.find((el) => el.name === 'searchBar');
-      searchBarState.cities.push(action.payload);
+      state.push(action.payload);
     });
   },
 });
@@ -105,7 +104,7 @@ export const getCityLocation = createAsyncThunk(
       `http://api.airvisual.com/v2/nearest_city?lat=${latitude}&lon=${longitude}&key=d4281486-c6e5-40f2-a45a-666c2a800bae`,
     );
     const results = cityAqi.data.data.current;
-    const city = createCity(name, objectId, latitude, longitude);
+    const city = createCity(name, '', objectId, latitude, longitude);
     city.info = results;
     return city;
   },

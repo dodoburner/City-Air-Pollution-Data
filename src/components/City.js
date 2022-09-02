@@ -6,10 +6,10 @@ import '../styles/City.css';
 
 export default function City() {
   const dispatch = useDispatch();
-  const { city: name, country } = useParams();
+  const { city: name } = useParams();
 
   const cities = useSelector((state) => state.cities) || [];
-  const city = cities.find((city) => city.name === name) || { info: { pollution: [] } }
+  const city = cities.find((city) => city.name === name) || { info: { pollution: [] } };
   const { pollution } = city.info;
   const { weather } = city.info;
 

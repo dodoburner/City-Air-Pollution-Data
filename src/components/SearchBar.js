@@ -11,12 +11,12 @@ export default function SearchBar() {
   const [location, setLocation] = useState('');
 
   const handleSubmit = (e) => {
-    const correctInputConversion = location.charAt(0).toUpperCase() + location.slice(1);
-    console.log(correctInputConversion);
+    const city = location.charAt(0).toUpperCase() + location.slice(1);
+    console.log(city);
     e.preventDefault();
     (async () => {
-      await dispatch(getCityLocation({ name: correctInputConversion }));
-      navigate('/city', { state: { name: correctInputConversion, topName: 'searchBar' } });
+      await dispatch(getCityLocation({ name: city }));
+      navigate(`/search/search/${city}`);
     })();
   };
 
