@@ -1,20 +1,20 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { getCities } from '../redux/citiesSlice';
 import Tile from './Tile';
 
 export default function Country() {
-  const location = useLocation();
+  const { country: name, continent: topName } = useParams();
   const dispatch = useDispatch();
-  const { id, name } = location.state;
+  const continent = useSelector((state) => state.countries).find((el) => el.name === topName);
+  const { id } = continent.countries.find((el) => el.name === name);
 
   const countries = useSelector((state) => state.cities);
-  const country = countries.find((el) => el.name === name) || {
+  const { cities } = countries.find((el) => el.name === name) || {
     name: '',
     cities: [],
   };
-  const { cities } = country;
 
   useEffect(() => {
     if (cities.length === 0) {
