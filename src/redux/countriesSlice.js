@@ -3,10 +3,11 @@ import axios from 'axios';
 
 const initialState = [];
 
-function createCountry(name, id) {
+function createCountry(name, id, continent) {
   return {
     name,
     id,
+    continent,
   };
 }
 
@@ -16,10 +17,9 @@ export default createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase('countries/fetchCountries/fulfilled', (state, action) => {
-      const countries = action.payload.results.map((country) => (
-        createCountry(country.name, country.objectId)));
-      const { name } = action.payload;
-      state.push({ name, countries });
+      const { name: continent } = action.payload;
+      action.payload.results.map((country) => (
+        state.push(createCountry(country.name, country.objectId, continent))));
     });
   },
 });

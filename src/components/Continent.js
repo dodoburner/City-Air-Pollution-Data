@@ -9,13 +9,10 @@ export default function Continent() {
   const dispatch = useDispatch();
   const { id } = useSelector((state) => state.continents).find((el) => el.name === name);
   const countries = useSelector((state) => state.countries) || [];
-  const continent = countries.find((continent) => continent.name === name) || {
-    name: '',
-    countries: [],
-  };
+  const continent = countries.filter((country) => country.continent === name) || [];
 
   useEffect(() => {
-    if (continent.countries.length === 0) {
+    if (continent.length === 0) {
       dispatch(fetchCountries({ name, id }));
     }
   }, []);
@@ -25,14 +22,14 @@ export default function Continent() {
       <div className="top-tile">
         <h1>{name}</h1>
         <p>
-          {continent.countries.length}
+          {continent.length}
           {' '}
           available countries
         </p>
       </div>
 
       <div className="list-container">
-        {continent.countries.map((country, index) => (
+        {continent.map((country, index) => (
           <Tile
             type="isCountry"
             topName={name}
