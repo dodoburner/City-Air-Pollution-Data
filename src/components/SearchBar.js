@@ -12,7 +12,6 @@ export default function SearchBar() {
 
   const handleSubmit = (e) => {
     const city = location.charAt(0).toUpperCase() + location.slice(1);
-    console.log(city);
     e.preventDefault();
     (async () => {
       await dispatch(getCityLocation({ name: city }));
