@@ -20,8 +20,7 @@ This is a Single Page Application designed for mobile phones. It is created with
 
 ## Live Demo Link
 
-Coming soon...
-
+[Link](https://city-air-pollution-app.netlify.app/)
 ## Getting Started
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
