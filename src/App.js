@@ -19,7 +19,7 @@ function App() {
       </BrowserRouter>
       <div className="credits">
         Created by
-        <a href="https://github.com/dodoburner"> Dorian</a>
+        <a target="_blank" rel="noreferrer" href="https://github.com/dodoburner"> Dorian</a>
       </div>
     </div>
   );
