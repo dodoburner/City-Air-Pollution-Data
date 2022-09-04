@@ -65,7 +65,7 @@ export const getCities = createAsyncThunk(
       }),
     );
     const response = await fetch(
-      `https://parseapi.back4app.com/classes/Continentscountriescities_City?limit=20&order=-population&keys=name,location&where=${where}`,
+      `https://parseapi.back4app.com/classes/Continentscountriescities_City?limit=50&order=-population&keys=name,location&where=${where}`,
       {
         headers: {
           'X-Parse-Application-Id': 'mfpmjU4NFMM0RudR7jTsImrVvH16ZG7aqJhqWoiZ', // This is your app's application id

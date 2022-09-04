@@ -48,15 +48,15 @@ export const fetchCountries = createAsyncThunk(
       },
     );
     const data = await response.json(); // Here you have the data that you need
-    let { results } = data;
+    const { results } = data;
 
-    const data1 = await axios.get(
-      'http://api.airvisual.com/v2/countries?key=d4281486-c6e5-40f2-a45a-666c2a800bae',
-    );
-    let allCountries = data1.data.data;
-    allCountries = allCountries.map((country) => country.country);
+    // const data1 = await axios.get(
+    //   'http://api.airvisual.com/v2/countries?key=d4281486-c6e5-40f2-a45a-666c2a800bae',
+    // );
+    // let allCountries = data1.data.data;
+    // allCountries = allCountries.map((country) => country.country);
 
-    results = results.filter((result) => allCountries.includes(result.name));
+    // results = results.filter((result) => allCountries.includes(result.name));
     return { results, name };
   },
 );
