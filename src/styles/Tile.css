@@ -1,4 +1,4 @@
-.option-container {
+.tile {
   height: 200px;
   display: flex;
   flex-direction: column;
@@ -6,11 +6,11 @@
   padding: 10px;
 }
 
-.option-container:hover {
+.tile:hover {
   opacity: 0.8;
 }
 
-.option-text {
+.tile-text {
   margin-top: auto;
   margin-bottom: 20px;
   color: white;
@@ -18,7 +18,7 @@
   font-weight: bold;
 }
 
-.option-btn {
+.tile-btn {
   background-color: inherit;
   border-radius: 50%;
   padding: 2px;
@@ -29,14 +29,14 @@
   cursor: pointer;
 }
 
-.option-btn:hover {
+.tile-btn:hover {
   background-color: rgb(19, 45, 90);
 }
 
-.first-color {
-  background-color: rgb(67, 105, 178);
+.tile:nth-child(4n+1) {
+  background-color: rgb(88, 137, 229);
 }
 
-.second-color {
-  background-color: rgb(63, 98, 164);
+.tile:nth-child(4n+4) {
+  background-color: rgb(88, 137, 229);
 }
