@@ -33,14 +33,14 @@ export default function Country() {
 
       <div>
         <div className="list-container">
-          {cities.map((city, index) => (
+          {cities.map((city) => (
             <Tile
               type="isCity"
               topName={name}
               name={city.name}
-              index={index}
               key={city.id}
               id={city.id}
+              population={city.population}
             />
           ))}
         </div>

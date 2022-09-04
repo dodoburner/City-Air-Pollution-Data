@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import '../styles/Tile.css';
 
 export default function Tile({
-  name, id, type, topName,
+  name, id, type, topName, population,
 }) {
   function returnLink() {
     switch (type) {
@@ -39,11 +39,18 @@ export default function Tile({
   }
 
   return (
-    <div
-      className="tile"
-    >
+    <div className="tile">
       {returnLink()}
-      <p className="tile-text">{name}</p>
+      <p className="tile-text">
+        {name}
+      </p>
+      {population ? (
+        <span>
+          Population:
+          {' '}
+          {population}
+        </span>
+      ) : null}
     </div>
   );
 }
@@ -53,8 +60,10 @@ Tile.propTypes = {
   id: PropTypes.string.isRequired,
   topName: PropTypes.string,
   type: PropTypes.string.isRequired,
+  population: PropTypes.string,
 };
 
 Tile.defaultProps = {
   topName: '',
+  population: '',
 };
