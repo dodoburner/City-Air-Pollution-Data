@@ -35,11 +35,8 @@ export default function Country() {
         <div className="list-container">
           {cities.map((city) => (
             <Tile
-              type="isCity"
-              topName={name}
               name={city.name}
               key={city.id}
-              id={city.id}
               population={city.population}
             />
           ))}

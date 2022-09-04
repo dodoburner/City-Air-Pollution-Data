@@ -29,14 +29,10 @@ export default function Continent() {
       </div>
 
       <div className="list-container">
-        {continent.map((country, index) => (
+        {continent.map((country) => (
           <Tile
-            type="isCountry"
-            topName={name}
             name={country.name}
-            index={index}
             key={country.id}
-            id={country.id}
           />
         ))}
       </div>
