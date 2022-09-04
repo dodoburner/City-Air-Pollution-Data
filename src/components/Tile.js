@@ -5,14 +5,14 @@ import PropTypes from 'prop-types';
 import '../styles/Tile.css';
 
 export default function Tile({
-  name, index, id, type, topName,
+  name, id, type, topName, population,
 }) {
   function returnLink() {
     switch (type) {
       case 'isContinent':
         return (
           <Link to={name}>
-            <button type="button" className="option-btn">
+            <button type="button" className="tile-btn">
               <FontAwesomeIcon icon={faArrowRight} />
             </button>
           </Link>
@@ -20,7 +20,7 @@ export default function Tile({
       case 'isCountry':
         return (
           <Link to={name}>
-            <button type="button" className="option-btn">
+            <button type="button" className="tile-btn">
               <FontAwesomeIcon icon={faArrowRight} />
             </button>
           </Link>
@@ -28,7 +28,7 @@ export default function Tile({
       case 'isCity':
         return (
           <Link to={name} state={{ id, name, topName }}>
-            <button type="button" className="option-btn">
+            <button type="button" className="tile-btn">
               <FontAwesomeIcon icon={faArrowRight} />
             </button>
           </Link>
@@ -39,12 +39,18 @@ export default function Tile({
   }
 
   return (
-    <div
-      className={`option-container
-      ${index % 2 === 0 ? 'first-color' : 'second-color'}`}
-    >
+    <div className="tile">
       {returnLink()}
-      <p className="option-text">{name}</p>
+      <p className="tile-text">
+        {name}
+      </p>
+      {population ? (
+        <span>
+          Population:
+          {' '}
+          {population}
+        </span>
+      ) : null}
     </div>
   );
 }
@@ -52,11 +58,12 @@ export default function Tile({
 Tile.propTypes = {
   name: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  index: PropTypes.number.isRequired,
   topName: PropTypes.string,
   type: PropTypes.string.isRequired,
+  population: PropTypes.string,
 };
 
 Tile.defaultProps = {
   topName: '',
+  population: '',
 };

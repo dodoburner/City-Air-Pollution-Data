@@ -17,6 +17,10 @@ function App() {
           <Route path="/:continent/:country/:city" element={<City />} />
         </Routes>
       </BrowserRouter>
+      <div className="credits">
+        Created by
+        <a target="_blank" rel="noreferrer" href="https://github.com/dodoburner"> Dorian</a>
+      </div>
     </div>
   );
 }

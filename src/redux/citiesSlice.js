@@ -2,9 +2,10 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = [];
-const createCity = (name, country, id, lat, long) => ({
+const createCity = (name, country, population, id, lat, long) => ({
   name,
   country,
+  population,
   id,
   lat,
   long,
@@ -27,6 +28,7 @@ export default createSlice({
         state.push(createCity(
           city.name,
           country,
+          city.population,
           city.objectId,
           city.location.latitude,
           city.location.longitude,
@@ -65,7 +67,7 @@ export const getCities = createAsyncThunk(
       }),
     );
     const response = await fetch(
-      `https://parseapi.back4app.com/classes/Continentscountriescities_City?limit=20&order=-population&keys=name,location&where=${where}`,
+      `https://parseapi.back4app.com/classes/Continentscountriescities_City?limit=50&order=-population&keys=name,population,location&where=${where}`,
       {
         headers: {
           'X-Parse-Application-Id': 'mfpmjU4NFMM0RudR7jTsImrVvH16ZG7aqJhqWoiZ', // This is your app's application id
