@@ -88,9 +88,9 @@ export default function City() {
                 <span>{pollution.aqius}</span>
               </p>
               <p className="main-polutant">
-                Main Polutant:
+                Main Pollutant:
                 {' '}
-                <span>{pollution.mainus}</span>
+                <span className="pollution-span">{pollution.mainus}</span>
               </p>
             </div>
 
@@ -114,28 +114,38 @@ export default function City() {
               <p>
                 Humidity:
                 {' '}
-                {weather.hu}
-                %
+                <span>
+                  {weather.hu}
+                  {' '}
+                  %
+                </span>
               </p>
               <p>
                 Pressure:
                 {' '}
-                {weather.pr}
-                {' '}
-                hPa
+                <span>
+                  {weather.pr}
+                  {' '}
+                  hPa
+                </span>
               </p>
               <p>
                 Wind:
                 {' '}
-                {weather.ws}
-                {' '}
-                m/s
+                <span>
+                  {weather.ws}
+                  {' '}
+                  m/s
+                </span>
               </p>
               <p>
                 Temperature:
                 {' '}
-                {weather.tp}
-                °C
+                <span>
+                  {weather.tp}
+                  {' '}
+                  °C
+                </span>
               </p>
             </div>
           </div>

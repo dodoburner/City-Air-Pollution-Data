@@ -8,7 +8,7 @@
 
 h3 {
   margin-left: auto;
-  font-size: 24px;
+  font-size: 30px;
   text-align: end;
 }
 
@@ -31,6 +31,11 @@ h3 span {
 .aqi-number span {
   font-size: 30px;
   margin-top: auto;
+}
+
+.pollution-span {
+  font-size: 18px;
+  font-weight: bold;
 }
 
 .aqi-desc {
@@ -56,6 +61,11 @@ h3 span {
 
 .weather-info p {
   margin-bottom: 10px;
+}
+
+.weather-info span {
+  font-weight: bold;
+  font-size: 16px;
 }
 
 .red {
