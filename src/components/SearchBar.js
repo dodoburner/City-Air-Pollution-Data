@@ -15,7 +15,7 @@ export default function SearchBar() {
     e.preventDefault();
     (async () => {
       await dispatch(getCityLocation({ name: city }));
-      navigate(`/continent/country/${city}`);
+      navigate(`/direct-search/${city}`);
     })();
   };
 

@@ -11,10 +11,11 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/:continent" element={<Continent />} />
           <Route path="/:continent/:country" element={<Country />} />
           <Route path="/:continent/:country/:city" element={<City />} />
+          <Route path="/direct-search/:city" element={<City />} />
         </Routes>
       </BrowserRouter>
       <div className="credits">
