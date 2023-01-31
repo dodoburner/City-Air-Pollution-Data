@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getCityData } from '../redux/citiesSlice';
+import { getCityData, getCityLocation } from '../redux/citiesSlice';
 import '../styles/City.css';
 
 const aqiData = [
@@ -52,105 +52,126 @@ const aqiData = [
 export default function City() {
   const dispatch = useDispatch();
   const { city: name } = useParams();
+  const [status, setStatus] = useState('pending');
 
   const cities = useSelector((state) => state.cities) || [];
   const city = cities.find((city) => city.name === name) || { info: { pollution: [] } };
-  const { pollution } = city.info;
-  const { weather } = city.info;
-
+  const { pollution, weather } = city.info;
   const aqiDataCity = aqiData.find((el) => el.maxValue > pollution.aqius) || {};
 
   useEffect(() => {
-    if (pollution.length === 0 && cities.length !== 0) {
-      dispatch(getCityData({
-        lat: city.lat, long: city.long, name,
-      }));
-    }
+    const fetchCity = async () => {
+      let response = {};
+      if (pollution.length === 0 && cities.length !== 0) {
+        response = await dispatch(getCityData({
+          lat: city.lat, long: city.long, name,
+        }));
+      } else if (pollution.length === 0 && cities.length === 0) {
+        response = await dispatch(getCityLocation({ name }));
+      }
+      setStatus(response.meta.requestStatus);
+    };
+
+    fetchCity();
   }, []);
+
+  function renderCity() {
+    if (status === 'rejected') {
+      return (
+        <div className="no-page">
+          Page doesn&apos;t exist : /
+        </div>
+      );
+    }
+    if (status === 'pending') {
+      return (
+        <div className="no-page">
+          Loading...
+        </div>
+      );
+    }
+    return (
+      <div>
+        <div className="top-tile">
+          <h1>{name}</h1>
+        </div>
+
+        <div className={`polution-info-container ${aqiDataCity.color}`}>
+          <div>
+            <p className="aqi-number">
+              US AQI:
+              {' '}
+              <span>{pollution.aqius}</span>
+            </p>
+            <p className="main-polutant">
+              Main Pollutant:
+              {' '}
+              <span className="pollution-span">{pollution.mainus}</span>
+            </p>
+          </div>
+
+          <h3>
+            <span>Live AQI Index</span>
+            <br />
+            {' '}
+            {aqiDataCity.level}
+          </h3>
+        </div>
+
+        <p className="aqi-desc">{aqiDataCity.description}</p>
+
+        <div className="weather-info-container">
+          <img
+            src={`https://www.airvisual.com/images/${weather.ic}.png`}
+            alt="weather icon"
+            className="weather-icon"
+          />
+          <div className="weather-info">
+            <p>
+              Humidity:
+              {' '}
+              <span>
+                {weather.hu}
+                {' '}
+                %
+              </span>
+            </p>
+            <p>
+              Pressure:
+              {' '}
+              <span>
+                {weather.pr}
+                {' '}
+                hPa
+              </span>
+            </p>
+            <p>
+              Wind:
+              {' '}
+              <span>
+                {weather.ws}
+                {' '}
+                m/s
+              </span>
+            </p>
+            <p>
+              Temperature:
+              {' '}
+              <span>
+                {weather.tp}
+                {' '}
+                °C
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="city-container">
-      {pollution.length === 0 ? (
-        <div className="no-page">
-          PAGE DOESN&apos;T EXIST
-        </div>
-      ) : (
-        <div>
-          <div className="top-tile">
-            <h1>{name}</h1>
-          </div>
-
-          <div className={`polution-info-container ${aqiDataCity.color}`}>
-            <div>
-              <p className="aqi-number">
-                US AQI:
-                {' '}
-                <span>{pollution.aqius}</span>
-              </p>
-              <p className="main-polutant">
-                Main Pollutant:
-                {' '}
-                <span className="pollution-span">{pollution.mainus}</span>
-              </p>
-            </div>
-
-            <h3>
-              <span>Live AQI Index</span>
-              <br />
-              {' '}
-              {aqiDataCity.level}
-            </h3>
-          </div>
-
-          <p className="aqi-desc">{aqiDataCity.description}</p>
-
-          <div className="weather-info-container">
-            <img
-              src={`https://www.airvisual.com/images/${weather.ic}.png`}
-              alt="weather icon"
-              className="weather-icon"
-            />
-            <div className="weather-info">
-              <p>
-                Humidity:
-                {' '}
-                <span>
-                  {weather.hu}
-                  {' '}
-                  %
-                </span>
-              </p>
-              <p>
-                Pressure:
-                {' '}
-                <span>
-                  {weather.pr}
-                  {' '}
-                  hPa
-                </span>
-              </p>
-              <p>
-                Wind:
-                {' '}
-                <span>
-                  {weather.ws}
-                  {' '}
-                  m/s
-                </span>
-              </p>
-              <p>
-                Temperature:
-                {' '}
-                <span>
-                  {weather.tp}
-                  {' '}
-                  °C
-                </span>
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
+      {renderCity()}
     </div>
   );
 }
