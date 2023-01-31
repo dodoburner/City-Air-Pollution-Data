@@ -51,7 +51,7 @@ const aqiData = [
 
 export default function City() {
   const dispatch = useDispatch();
-  const { city: name } = useParams();
+  const { city: name, country } = useParams();
   const [status, setStatus] = useState('pending');
 
   const cities = useSelector((state) => state.cities) || [];
@@ -62,17 +62,22 @@ export default function City() {
   useEffect(() => {
     const fetchCity = async () => {
       let response = {};
-      if (pollution.length === 0 && cities.length !== 0) {
+      if (pollution.length === 0 && country) {
         response = await dispatch(getCityData({
           lat: city.lat, long: city.long, name,
         }));
-      } else if (pollution.length === 0 && cities.length === 0) {
+        setStatus(response.meta.requestStatus);
+      } else if (pollution.length === 0) {
         response = await dispatch(getCityLocation({ name }));
+        setStatus(response.meta.requestStatus);
       }
-      setStatus(response.meta.requestStatus);
     };
 
-    fetchCity();
+    if (city.name && !country) {
+      setStatus('fulfilled');
+    } else {
+      fetchCity();
+    }
   }, []);
 
   function renderCity() {
