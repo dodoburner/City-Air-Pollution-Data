@@ -19,7 +19,7 @@ export default createSlice({
   extraReducers: (builder) => {
     builder.addCase('cities/getCityData/fulfilled', (state, action) => {
       const city = state.find((city) => city.name === action.payload.name);
-      city.info = action.payload.results;
+      if (city) city.info = action.payload.results;
     });
 
     builder.addCase('cities/getCities/fulfilled', (state, action) => {
