@@ -11,7 +11,7 @@ export default function SearchBar() {
   const [location, setLocation] = useState('');
 
   const handleSubmit = (e) => {
-    const city = location.charAt(0).toUpperCase() + location.slice(1);
+    const city = location.trim().split(' ').map((el) => el[0].toUpperCase() + el.slice(1)).join('%20');
     e.preventDefault();
     (async () => {
       await dispatch(getCityLocation({ name: city }));
